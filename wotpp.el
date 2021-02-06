@@ -1,8 +1,13 @@
-;;; wotpp.el -*- lexical-binding: t; -*-
+;;; wotpp.el --- Wot++ for emacs
+;;; https://github.com/jlagarespo/wot-goodies/blob/master/wotpp.el
+;;; Commentary:
+;;; Major mode and flycheck checker for the Wot++ programming language.
+;;; https://github.com/Jackojc/wotpp
+;;; Author: Jacob Lagares Pozo
 
 ;; wot++ font lock
 (setq wotpp-highlights
-      '(("let" . font-lock-keyword-face)
+      '(("let\\|eval" . font-lock-keyword-face)
         ("\".*?\"" . font-lock-string-face)
         ("#\[.*\]" . font-lock-comment-face)))
 
