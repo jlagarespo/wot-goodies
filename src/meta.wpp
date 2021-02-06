@@ -1,0 +1,23 @@
+#[ Template metaprogramming metaprogramming ]
+#[ by Jacob Lagares Pozo ]
+#[ w++ meta.wpp | clang++ -std=c++20 -Wall -Wextra -pedantic -O3 -o hello -x c++ - ]
+
+let cpp/include(x) "#include <" .. x .. ">\n"
+let cpp/stat(x) "\t" .. x .. ";\n"
+let cpp/block(x) "{\n" .. x .. "}"
+let cpp/func(type, name, args, body)
+    type .. " " .. name .. "(" .. args .. ") " ..
+    cpp/block(body) .. "\n"
+let cpp/template(args, func)
+    "template <" .. args .. ">\n" ..
+    func
+
+cpp/include("iostream")
+
+cpp/template("typename T",
+cpp/func("constexpr void", "print", "T s",
+    cpp/stat("std::cout << s << std::endl")))
+
+cpp/func("int", "main", "int argc, char *argv[]",
+    cpp/stat("print<std::string>(\"hello, world\")") ..
+    cpp/stat("return 0"))
