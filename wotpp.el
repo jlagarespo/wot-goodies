@@ -7,7 +7,7 @@
 
 ;; wot++ font lock
 (setq wotpp-highlights
-      '(("let\\|eval" . font-lock-keyword-face)
+      '(("let\\|eval\\|shell" . font-lock-keyword-face)
         ("\".*?\"" . font-lock-string-face)
         ("#\[.*\]" . font-lock-comment-face)))
 
