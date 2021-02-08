@@ -7,9 +7,10 @@
 
 ;; wot++ font lock
 (setq wotpp-highlights
-      '(("let\\|eval\\|shell" . font-lock-keyword-face)
+      '(("let" . font-lock-keyword-face)
+        ("run\\|eval\\|assert\\|file" . font-lock-function-name-face)
         ("\".*?\"" . font-lock-string-face)
-        ("#\[.*\]" . font-lock-comment-face)))
+        ("\#\\[ .* \]" . font-lock-comment-face)))
 
 (define-derived-mode wotpp-mode prog-mode "wot++"
   "Major mode for the Wot++ programming language
