@@ -7,15 +7,18 @@
 
 ;; wot++ font lock
 (setq wotpp-highlights
-      '(("let" . font-lock-keyword-face)
-        ("run\\|eval\\|assert\\|file" . font-lock-function-name-face)
-        ("\".*?\"" . font-lock-string-face)
-        ("\#\\[ .* \]" . font-lock-comment-face)))
+      '(("\#\\[.*\]" . font-lock-comment-face)
+        ("let" . font-lock-keyword-face)
+        ("let .*\\>" . font-lock-function-name-face)
+        ("\\<run\\>\\|\\<eval\\>\\|\\<assert\\>\\|\\<file\\>" . font-lock-function-name-face)
+        ("\".*?\"" . font-lock-string-face)))
 
 (define-derived-mode wotpp-mode prog-mode "wot++"
   "Major mode for the Wot++ programming language
   https://github.com/Jackojc/wotpp"
   (setq font-lock-defaults '(wotpp-highlights)))
+
+(add-to-list 'auto-mode-alist '("\\.wpp\\'" . wotpp-mode))
 
 ;; wot++ flycheck
 (require 'flycheck)

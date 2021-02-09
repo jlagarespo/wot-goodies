@@ -1,0 +1,1 @@
+run("cat $(pwd)/quine.wpp")
