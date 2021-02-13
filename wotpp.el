@@ -10,8 +10,8 @@
       '(("\#\\[.*\]" . font-lock-comment-face)
         ("let" . font-lock-keyword-face)
         ("let .*\\>" . font-lock-function-name-face)
-        ("\\<run\\>\\|\\<eval\\>\\|\\<assert\\>\\|\\<file\\>" . font-lock-function-name-face)
-        ("\".*?\"" . font-lock-string-face)))
+        ("\\<assert\\>\\|\\<error\\>\\|\\<file\\>\\|\\<source\\>\\|\\<escape\\>\\|\\<eval\\>\\|\\<run\\>" . font-lock-function-name-face)
+        ("\".[*\n]?\"" . font-lock-string-face)))
 
 (define-derived-mode wotpp-mode prog-mode "wot++"
   "Major mode for the Wot++ programming language
