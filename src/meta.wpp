@@ -1,5 +1,7 @@
 #[ Template metaprogramming metaprogramming ]
 #[ by Jacob Lagares Pozo ]
+#[ February 6th 2021 15:09 ]
+#[ https://discord.com/channels/293438748018999297/741379837490495518/807614038892478534 ]
 #[ w++ meta.wpp | clang++ -std=c++20 -Wall -Wextra -pedantic -O3 -o hello -x c++ - ]
 
 let cpp/include(x) "#include <" .. x .. ">\n"
