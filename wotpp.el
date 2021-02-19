@@ -8,9 +8,9 @@
 ;; wot++ font lock
 (setq wotpp-highlights
       '(("\#\\[.*\]" . font-lock-comment-face)
-        ("let" . font-lock-keyword-face)
+        ("let\\|prefix\\|map" . font-lock-keyword-face)
         ("let .*\\>" . font-lock-function-name-face)
-        ("\\<assert\\>\\|\\<error\\>\\|\\<file\\>\\|\\<source\\>\\|\\<escape\\>\\|\\<eval\\>\\|\\<run\\>" . font-lock-function-name-face)))
+        ("\\<assert\\>\\|\\<error\\>\\|\\<file\\>\\|\\<source\\>\\|\\<escape\\>\\|\\<eval\\>\\|\\<run\\>\\|\\<pipe\\>\\|\\<slice\\>\\|\\<find\\>\\|\\<length\\>\\|\\<log\\>" . font-lock-function-name-face)))
 
 (define-derived-mode wotpp-mode prog-mode "wot++"
   "Major mode for the Wot++ programming language
@@ -26,7 +26,9 @@
   "flycheck for wot++"
   :command ("w++" source)
   :error-patterns
-  ((error line-start "error @ " line ":" column ": " (message) line-end))
+  (
+   (error line-start "error @ " line ":" column ": " (message) line-end)
+   (warning line-start "warn @ " line ":" column ": " (message) line-end))
   :modes wotpp-mode)
 
 (add-to-list 'flycheck-checkers 'wotpp-validator)
