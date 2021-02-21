@@ -1,0 +1,22 @@
+#[ indent.wpp
+
+   Copyright (C) 2021 Jacob Lagares Pozo
+   Author: Jacob Lagares Pozo
+   Created: February 21, 2021
+
+   This file is part of the wot++ non-standard library.]
+
+source("common.wpp")
+source("meta.wpp")
+
+let indent_forward {
+    std/defun("indent", std/string(indent) .. std/cat .. std/string(\t))
+    ""
+}
+
+let indent_backward {
+    drop indent
+    ""
+}
+
+let indent ""
