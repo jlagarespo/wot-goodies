@@ -1,0 +1,12 @@
+#[ common.wpp
+
+   Copyright (C) 2021 Jacob Lagares Pozo
+   Author: Jacob Lagares Pozo
+   Created: February 21, 2021
+
+   This file is part of the wot++ non-standard library.]
+
+#[ Common abbreviations in the global prefix.]
+let \n "\n"
+let \t "\t"
+let \\ "\\"

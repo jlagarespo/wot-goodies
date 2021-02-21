@@ -1,3 +1,5 @@
+#[ this file is cursed ]
+
 let template(t, r, name, body) {
     let rcmd "echo \"" .. escape(body) .. "\" | sed 's/" .. t .. "/" .. escape(r) .. "/g'"
     eval("let " .. name .. "{" .. run(rcmd) .. "}")

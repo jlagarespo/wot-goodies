@@ -1,0 +1,35 @@
+#[ meta.wpp
+
+   Copyright (C) 2021 Jacob Lagares Pozo
+   Author: Jacob Lagares Pozo
+   Created: February 21, 2021
+
+   This file is part of the wot++ non-standard library.]
+
+prefix "std/" {
+    let cat ".."
+
+    let block(x)
+        "{" .. x .. "}"
+
+    let paren(x)
+        "(" .. x .. ")"
+
+    let string(x)
+        "\"" .. x .. "\""
+
+    let defun(name, body)
+        eval("let " .. name .. std/block(body))
+
+    let defun(name, args, body)
+        eval("let " .. name .. std/paren(args) .. std/block(body))
+
+    let defconst(name, value)
+        eval("let " .. name .. " " .. std/string(value))
+
+    let funcall(name)
+        eval(name)
+
+    let funcall(name, args)
+        eval(name .. std/paren(args))
+}
