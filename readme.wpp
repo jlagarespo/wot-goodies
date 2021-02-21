@@ -1,0 +1,13 @@
+#[ w++ readme.wpp> readme.md ]
+source("std/markdown.wpp")
+
+md/h1("wot-goodies")
+"A selection of only the finest, bestest things written with/for the" ..
+md/link("Wot++ programming language", "https://github.com/Jackojc/wotpp/")
+\n
+
+"Currently includes:\n"
+md/ul("Quick wot++ test files under test/")
+md/ul("The wot++ non-standard lib under std/")
+md/ul("A wot++ discord bot under wppbot/")
+md/ul("A wot++ major mode for Emacs under wotpp-mode/")
