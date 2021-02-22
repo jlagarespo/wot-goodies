@@ -1,0 +1,20 @@
+#[ vars.wpp
+
+   Copyright (C) 2021 Jacob Lagares Pozo
+   Author: Jacob Lagares Pozo
+   Created: February 21, 2021
+
+   This file is part of the wot++ non-standard library.]
+
+source("meta.wpp")
+
+let set(var, x) {
+    eval("let " .. var .. std/string(x))
+    ""
+}
+
+#[
+This is useless
+let get(x)
+    eval(x)
+]

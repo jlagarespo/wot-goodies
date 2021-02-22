@@ -7,16 +7,17 @@
    This file is part of the wot++ non-standard library.]
 
 source("common.wpp")
-source("meta.wpp")
+source("vars.wpp")
 
-let indent_forward {
-    std/defun("indent", std/string(indent) .. std/cat .. std/string(\t))
-    ""
-}
+let indent_forward
+    set("indent", indent .. indent_char)
 
 let indent_backward {
     drop indent
     ""
 }
 
-let indent ""
+let indent_init(char) {
+    set("indent", "")
+    set("indent_char", char)
+}
