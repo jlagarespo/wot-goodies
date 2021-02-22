@@ -8,7 +8,34 @@
 
 source("common.wpp")
 source("indent.wpp")
+source("meta.wpp")
 
-#[ Under construction ]
-prefix "html/" {
+indent_init(\t)
+
+let tag(x) {
+    set("tag_value", x) # New tag value
+    set("indent_", indent) # Old indent
+    indent_forward
+    indent_ .. "<" .. tag_value .. ">\n"
 }
+
+let /tag() {
+    set("tag_value_", tag_value) # Old tag value
+    indent_backward
+    drop tag_value
+    indent .. "</" .. tag_value_ .. ">\n"
+}
+
+let new_tag(x) {
+    std/defun(x, "tag(" .. std/string(x) .. ")")
+    std/defun("/"..x, "/tag" .. std/string(x) .. ")")
+}
+
+new_tag("div")
+
+div
+    indent .. "this is a test\n"
+    tag("p")
+        indent .. "this is another test\n"
+    /tag
+/div
