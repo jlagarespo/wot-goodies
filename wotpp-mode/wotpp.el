@@ -25,6 +25,7 @@
   (list
    ;; keywords
    (cons "let" 'font-lock-keyword-face)
+   (cons "drop" 'font-lock-keyword-face)
    (cons "map" 'font-lock-keyword-face)
    (cons "prefix" 'font-lock-keyword-face)
 
