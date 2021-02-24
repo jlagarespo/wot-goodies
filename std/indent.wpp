@@ -9,8 +9,10 @@
 source("common.wpp")
 source("vars.wpp")
 
-let indent_forward
-    set("indent", indent .. indent_char)
+let indent_forward {
+    var indent indent .. indent_char
+    ""
+}
 
 let indent_backward {
     drop indent
@@ -18,6 +20,7 @@ let indent_backward {
 }
 
 let indent_init(char) {
-    set("indent", "")
-    set("indent_char", char)
+    var indent ""
+    var indent_char char
+    ""
 }
