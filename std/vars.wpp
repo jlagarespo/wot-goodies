@@ -8,10 +8,15 @@
 
 source("meta.wpp")
 
+#[ THIS WHOLE THING IS NOW OBSOLETE, SINCE NOW WOT++ HAS THE
+   EAGER-EVAL 'VAR' KEYWORD. ]
+
+#[
 let set(var, x) {
     eval("let " .. var .. std/string(x))
     ""
 }
+]
 
 #[
 This is useless
