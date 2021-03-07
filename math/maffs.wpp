@@ -17,6 +17,13 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>. ]
 
+#[ IMPORTANT:
+   This whole concept was originally developed by strexicious
+   (https://github.com/Jackojc/wotpp/commit/c4d73fea5283eda339c03ab1bfe92511141dc44b#diff-92ec367d8e521a2027e36836d72e26da3116abf645afcbdfd8b5c906866e8595)
+
+   I just improved it slightly and added new functions (such as subtraction and division.)
+   I am nowhere near smart enough to come up with this, so huge thanks to strex for the original file. ]
+
 
 
 let set(name, val)
