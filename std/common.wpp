@@ -9,4 +9,4 @@
 #[ Common abbreviations in the global prefix.]
 let \n "\n"
 let \t "\t"
-let \\ "\\"
+let \ "\\"

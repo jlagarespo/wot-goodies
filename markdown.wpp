@@ -1,12 +1,4 @@
-#[ markdown.wpp
-
-   Copyright (C) 2021 Jacob Lagares Pozo
-   Author: Jacob Lagares Pozo
-   Created: February 21, 2021
-
-   This file is part of the wot++ non-standard library.]
-
-source("common.wpp")
+source("std/common.wpp")
 
 prefix "md/" {
     # Headers
@@ -28,7 +20,7 @@ prefix "md/" {
     let codeblock(lang, x) md/surr("```", lang .. \n .. x .. \n) .. \n
 
     # Lists
-    let ul(x) "* " .. x .. \n
+    let ul(x) " * " .. x .. \n
     let ol(x) "1. " .. x .. \n
 
     # Horizontal separator
@@ -39,28 +31,3 @@ prefix "md/" {
     let img(name, url) "![" .. name .. "](" .. url .. ")" .. \n
     let quote(x) "> " .. x .. \n
 }
-
-#[
-md/h1("test")
-md/h2("test")
-md/h3("test")
-md/h4("test")
-md/h5("test")
-md/h6("test")
-md/em("test")\n
-md/b("test")\n
-md/code("test")\n
-md/codeblock("wpp", "test")
-md/ul("test1")
-md/ul("test2")
-md/ul("test3")
-md/ul("test4")
-md/ol("test1")
-md/ol("test2")
-md/ol("test3")
-md/ol("test4")
-md/hr
-md/link("test", "example.com")
-md/img("test", "example.png")
-md/quote("test")
-]
