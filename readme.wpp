@@ -1,9 +1,9 @@
 #!w++
 
-source("std/markdown.wpp")
+source("markdown.wpp")
 
 md/h1("wot-goodies")
-"A selection of only the finest, bestest things written with/for the " ..
+"A selection of only the finest, wottest things written with/for the " ..
 md/link("Wot++ programming language", "https://github.com/Jackojc/wotpp/")
 \n
 

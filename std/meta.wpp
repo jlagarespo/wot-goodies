@@ -7,7 +7,7 @@
    This file is part of the wot++ non-standard library.]
 
 prefix "std/" {
-    let cat ".."
+    let cat(x, y) x .. ".." .. y
 
     let block(x)
         "{" .. x .. "}"
@@ -28,7 +28,7 @@ prefix "std/" {
         eval("let " .. name .. " " .. std/string(value))
 
     let funcall(name)
-        eval(name)
+        funcall(name, "")
 
     let funcall(name, args)
         eval(name .. std/paren(args))
