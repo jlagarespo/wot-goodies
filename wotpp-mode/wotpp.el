@@ -24,25 +24,25 @@
 (defconst wpp-font-lock-keywords
   (list
    ;; keywords
-   (cons "let" 'font-lock-keyword-face)
-   (cons "var" 'font-lock-keyword-face)
-   (cons "prefix" 'font-lock-keyword-face)
-   (cons "map" 'font-lock-keyword-face)
-   (cons "drop" 'font-lock-keyword-face)
+   (cons "\\blet\\b" 'font-lock-keyword-face)
+   (cons "\\bvar\\b" 'font-lock-keyword-face)
+   (cons "\\bprefix\\b" 'font-lock-keyword-face)
+   (cons "\\bmap\\b" 'font-lock-keyword-face)
+   (cons "\\bdrop\\b" 'font-lock-keyword-face)
 
    ;; intrinsics
-   (cons "assert" 'font-lock-builtin-face)
-   (cons "error" 'font-lock-builtin-face)
-   (cons "file" 'font-lock-builtin-face)
-   (cons "source" 'font-lock-builtin-face)
-   (cons "escape" 'font-lock-builtin-face)
-   (cons "eval" 'font-lock-builtin-face)
-   (cons "run" 'font-lock-builtin-face)
-   (cons "pipe" 'font-lock-builtin-face)
-   (cons "slice" 'font-lock-builtin-face)
-   (cons "find" 'font-lock-builtin-face)
-   (cons "length" 'font-lock-builtin-face)
-   (cons "log" 'font-lock-builtin-face)))
+   (cons "\\bassert\\b" 'font-lock-builtin-face)
+   (cons "\\berror\\b" 'font-lock-builtin-face)
+   (cons "\\bfile\\b" 'font-lock-builtin-face)
+   (cons "\\bsource\\b" 'font-lock-builtin-face)
+   (cons "\\bescape\\b" 'font-lock-builtin-face)
+   (cons "\\beval\\b" 'font-lock-builtin-face)
+   (cons "\\brun\\b" 'font-lock-builtin-face)
+   (cons "\\bpipe\\b" 'font-lock-builtin-face)
+   (cons "\\bslice\\b" 'font-lock-builtin-face)
+   (cons "\\bfind\\b" 'font-lock-builtin-face)
+   (cons "\\blength\\b" 'font-lock-builtin-face)
+   (cons "\\blog\\b" 'font-lock-builtin-face)))
 
 (defconst wpp-syntax-table
   (let ((table (make-syntax-table)))
