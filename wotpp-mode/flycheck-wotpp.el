@@ -22,10 +22,10 @@
 
 (flycheck-define-checker wotpp-validator
   "flycheck for wot++"
-  :command ("w++" source)
+  :command ("w++" source "-Wall")
   :error-patterns
-  ((error line-start "error @ " (file-name) ":" line ":" column ": " (message) line-end)
-   (warning line-start "warn @ " (file-name) ":" line ":" column ": " (message) line-end))
+  ((error line-start "error @ [" (file-name) ":" line ":" column "]: " (message) line-end)
+   (warning line-start "warning @ [" (file-name) ":" line ":" column "]: " (message) line-end))
   :modes wotpp-mode)
 
 (add-to-list 'flycheck-checkers 'wotpp-validator)
