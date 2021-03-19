@@ -45,11 +45,16 @@
    (cons "\\blog\\b" 'font-lock-builtin-face)))
 
 (defconst wpp-syntax-table
-  (let ((table (make-syntax-table)))
-    (modify-syntax-entry ?\[ "!<]" table)
-    (modify-syntax-entry ?\] "!<[" table)
-    (modify-syntax-entry ?\, "." table)
-    table))
+  (let ((table (make-syntax-table text-mode-syntax-table)))
+	;; whitespace chars
+	(modify-syntax-entry ?\s " " table)
+	(modify-syntax-entry ?\t " " table)
+
+	;; strings
+	(modify-syntax-entry ?\" "\"\"" table)
+	(modify-syntax-entry ?' "\"'" table)
+	
+	table))
 
 (define-derived-mode wotpp-mode prog-mode "wot++"
   "Major mode for the Wot++ programming language."
