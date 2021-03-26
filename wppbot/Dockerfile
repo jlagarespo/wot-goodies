@@ -14,9 +14,7 @@ FROM gorialis/discord.py
 
 ENV PATH=".:$PATH"
 
-COPY --from=0 /root/wotpp/build/wotpp .
-RUN ln -sf wotpp w++
-
+COPY --from=0 /root/wotpp/build/w++ .
 COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 
