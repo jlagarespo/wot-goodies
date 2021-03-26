@@ -1,14 +1,12 @@
-#!w++
+use "markdown.wpp"
 
-source("markdown.wpp")
-
-md/h1("wot-goodies")
+h1("wot-goodies")
 "A selection of only the finest, wottest things written with/for the " ..
-md/link("Wot++ programming language", "https://github.com/Jackojc/wotpp/")
-\n
+link("Wot++ programming language", "https://github.com/Jackojc/wotpp/")
+/n
 
 "Currently includes:\n"
-md/ul("Quick wot++ test files under test/")
-md/ul("The wot++ non-standard lib under std/")
-md/ul("A wot++ discord bot under wppbot/")
-md/ul("A wot++ major mode for Emacs under wotpp-mode/")
+ul("Quick wot++ test files under test/")
+ul("The wot++ non-standard lib under std/")
+ul("A wot++ discord bot under wppbot/")
+ul("A wot++ major mode for Emacs under wotpp-mode/")
