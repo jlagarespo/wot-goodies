@@ -24,8 +24,20 @@
   "flycheck for wot++"
   :command ("w++" source "-Wall")
   :error-patterns
-  ((error line-start "error @ [" (file-name) ":" line ":" column "]: " (message) line-end)
-   (warning line-start "warning @ [" (file-name) ":" line ":" column "]: " (message) line-end))
+  (
+   ;; errors
+   (error line-start "[31merror[0m " (file-name) ":" line ":" column " => [1m" (message) "[0m" line-end)
+   (error line-start "[source] [31merror[0m " (file-name) ":" line ":" column " => [1m" (message) "[0m" line-end)
+
+   ;; warnings
+   (warning line-start "[34mwarning[0m " (file-name) ":" line ":" column " => [1m" (message) "[0m" line-end)
+   (warning line-start "[source] [34mwarning[0m " (file-name) ":" line ":" column " => [1m" (message) "[0m" line-end)
+
+   ;; error description
+   ;; (error line-start (group (one-or-more any)) "[31m⤷ [0m" (message) line-end)
+
+   ;; warning description
+   ;; (error line-start (group (one-or-more any)) "[34m⤷ [0m" (message) line-end))
   :modes wotpp-mode)
 
 (add-to-list 'flycheck-checkers 'wotpp-validator)

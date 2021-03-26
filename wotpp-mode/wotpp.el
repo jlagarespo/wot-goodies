@@ -25,23 +25,22 @@
   (list
    ;; keywords
    (cons "\\blet\\b" 'font-lock-keyword-face)
-   (cons "\\bvar\\b" 'font-lock-keyword-face)
-   (cons "\\bprefix\\b" 'font-lock-keyword-face)
-   (cons "\\bmap\\b" 'font-lock-keyword-face)
    (cons "\\bdrop\\b" 'font-lock-keyword-face)
+   (cons "\\bmap\\b" 'font-lock-keyword-face)
+   (cons "\\buse\\b" 'font-lock-keyword-face)
+   (cons "\\bpush\\b" 'font-lock-keyword-face)
+   (cons "\\bpop\\b" 'font-lock-keyword-face)
 
    ;; intrinsics
-   (cons "\\bassert\\b" 'font-lock-builtin-face)
-   (cons "\\berror\\b" 'font-lock-builtin-face)
-   (cons "\\bfile\\b" 'font-lock-builtin-face)
-   (cons "\\bsource\\b" 'font-lock-builtin-face)
-   (cons "\\bescape\\b" 'font-lock-builtin-face)
-   (cons "\\beval\\b" 'font-lock-builtin-face)
    (cons "\\brun\\b" 'font-lock-builtin-face)
+   (cons "\\bfile\\b" 'font-lock-builtin-face)
+   (cons "\\bassert\\b" 'font-lock-builtin-face)
    (cons "\\bpipe\\b" 'font-lock-builtin-face)
+   (cons "\\berror\\b" 'font-lock-builtin-face)
    (cons "\\bslice\\b" 'font-lock-builtin-face)
    (cons "\\bfind\\b" 'font-lock-builtin-face)
    (cons "\\blength\\b" 'font-lock-builtin-face)
+   (cons "\\bescape\\b" 'font-lock-builtin-face)
    (cons "\\blog\\b" 'font-lock-builtin-face)))
 
 (defconst wpp-syntax-table
