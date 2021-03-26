@@ -31,7 +31,7 @@
 
    ;; warnings
    (warning line-start "[34mwarning[0m " (file-name) ":" line ":" column " => [1m" (message) "[0m" line-end)
-   (warning line-start "[source] [34mwarning[0m " (file-name) ":" line ":" column " => [1m" (message) "[0m" line-end)
+   (warning line-start "[source] [34mwarning[0m " (file-name) ":" line ":" column " => [1m" (message) "[0m" line-end))
 
    ;; error description
    ;; (error line-start (group (one-or-more any)) "[31m⤷ [0m" (message) line-end)
