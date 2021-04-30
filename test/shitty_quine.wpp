@@ -1,3 +1,0 @@
-#[ i'm lazy aight don't judge me
-   Should probably write a proper one one day... ]
-run("cat $(pwd)/shitty_quine.wpp")

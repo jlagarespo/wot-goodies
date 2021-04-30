@@ -1,31 +1,29 @@
-let /n "\n"
-
-# Headers
-let h1(x) "# " .. x .. /n
-let h2(x) "## " .. x .. /n
-let h3(x) "### " .. x .. /n
-let h4(x) "#### " .. x .. /n
-let h5(x) "##### " .. x .. /n
-let h6(x) "###### " .. x .. /n
+#[ Headers ]
+let h1(x) "# " .. x .. '\n'
+let h2(x) "## " .. x .. '\n'
+let h3(x) "### " .. x .. '\n'
+let h4(x) "#### " .. x .. '\n'
+let h5(x) "##### " .. x .. '\n'
+let h6(x) "###### " .. x .. '\n'
 
 let surr(x, y) x .. y .. x
 
-# Basic styling
+#[ Basic styling ]
 let em(x) md/surr("*", x)
 let b(x) md/surr("*", x)
 
-# Code
+#[ Code ]
 let code(x) md/surr("`", x)
-let codeblock(lang, x) md/surr("```", lang .. /n .. x .. /n) .. /n
+let codeblock(lang, x) md/surr("```", lang .. '\n' .. x .. '\n') .. '\n'
 
-# Lists
-let ul(x) " * " .. x .. /n
-let ol(x) "1. " .. x .. /n
+#[ Lists ]
+let ul(x) " * " .. x .. '\n'
+let ol(x) "1. " .. x .. '\n'
 
-# Horizontal separator
-let hr "---" .. /n
+#[ Horizontal separator ]
+let hr "---" .. '\n'
 
-# Misc
-let link(name, url) "[" .. name .. "](" .. url .. ")" .. /n
-let img(name, url) "![" .. name .. "](" .. url .. ")" .. /n
-let quote(x) "> " .. x .. /n
+#[ Misc ]
+let link(name, url) "[" .. name .. "](" .. url .. ")" .. '\n'
+let img(name, url) "![" .. name .. "](" .. url .. ")" .. '\n'
+let quote(x) "> " .. x .. '\n'
