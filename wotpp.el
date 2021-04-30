@@ -5,15 +5,17 @@
 ;; Author: Jacob Lagares Pozo <https://github.com/moonsheep>
 ;; Maintainer: Jacob Lagares Pozo <jlagarespo@iebesalu.cat>
 ;; Created: February 21, 2021
+;; Modified: April 30, 2021
 ;; Version: 1.0.0
 ;; Keywords: wot++ wotpp flycheck
-;; Homepage: https://github.com/Jackojc/wotpp/
+;; Homepage: https://github.com/jlagarespo/wot-goodies
 ;; Package-Requires: ((emacs "24.3"))
 ;;
 ;; This file is not part of GNU Emacs.
 ;;
 ;;; Commentary:
-;; Flycheck checker for the Wot++ programming language.
+;; Major mode for the Wot++ programming language, which includes on-the-fly
+;; error checking and syntax highlighting.
 ;;
 ;;; Code:
 
