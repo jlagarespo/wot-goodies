@@ -1,12 +1,13 @@
 use "markdown.wpp"
 
 h1("wot-goodies")
-"A selection of only the finest, wottest things written with/for the " ..
+"A selection of only the finest, wottest things written with/for the "
 link("Wot++ programming language", "https://github.com/Jackojc/wotpp/")
-/n
 
-"Currently includes:\n"
-ul("Quick wot++ test files under test/")
-ul("The wot++ non-standard lib under std/")
-ul("A wot++ discord bot under wppbot/")
-ul("A wot++ major mode for Emacs under wotpp-mode/")
+h2("Currently includes")
+ul("The wot++ Emacs major mode")
+ul("A wot++ discord bot")
+
+p¡"Note that this project is constantly a work in progress, so don't
+expect (for example) the syntax highlighting to be up-to-date to the
+language at any given point in time."¡
