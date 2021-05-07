@@ -7,9 +7,25 @@ link("Wot++ programming language", "https://github.com/Jackojc/wotpp/")
 h2("Currently includes")
 ul("The wot++ Emacs major mode")
 ul("A wot++ discord bot")
+ul("The wot++ improved number system.")
 
 p¡"Note that this project is constantly a work in progress, so don't
 expect (for example) the syntax highlighting to be up-to-date to the
-language at any given point in time."¡
+language at any given point in time.\n"¡
+
+codeblock("wpp",
+c¡"let wot() {
+	let wot() {
+		let wot() "goodies"
+		"++"
+	}
+	"wot"
+}
+wot()
+wot()
+' '
+wot()
+'\\n'
+"¡)
 
 '\n'

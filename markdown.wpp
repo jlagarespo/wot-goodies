@@ -6,15 +6,15 @@ let h4(x) "#### " .. x .. '\n'
 let h5(x) "##### " .. x .. '\n'
 let h6(x) "###### " .. x .. '\n'
 
-let surr(x, y) x .. y .. x
+let sur(x, y) x .. y .. x
 
 #[ Basic styling ]
-let em(x) md/surr("*", x)
-let b(x) md/surr("*", x)
+let em(x) sur("*", x)
+let b(x) sur("**", x)
 
 #[ Code ]
-let code(x) md/surr("`", x)
-let codeblock(lang, x) md/surr("```", lang .. '\n' .. x .. '\n') .. '\n'
+let code(x) sur("`", x)
+let codeblock(lang, x) sur("```", lang .. '\n' .. x .. '\n') .. '\n'
 
 #[ Lists ]
 let ul(x) " * " .. x .. '\n'
@@ -27,3 +27,4 @@ let hr "---" .. '\n'
 let link(name, url) "[" .. name .. "](" .. url .. ")" .. '\n'
 let img(name, url) "![" .. name .. "](" .. url .. ")" .. '\n'
 let quote(x) "> " .. x .. '\n'
+
