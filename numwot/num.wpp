@@ -52,6 +52,7 @@ let return(x) {
 	   Used to return simped x, now it just returns x because of subtraction. ]
 	drop s(.)
 	drop u(.)
+
 	#[simp(x)]
 	x
 }
@@ -70,13 +71,15 @@ let succ(x)
 		#[ This is way uglier than the old simplify thing, but it is
 		   much more practical, and more importantly, it works. ]
 		'u' -> {
+			let u(x) unsucc(x)
 			let u(x) {
-				let u(x) unsucc(x)
+				drop u(.)
 				x
 			}
 			let s(x) {
+				let u(x) unsucc(x)
 				let u(x) {
-					let u(x) unsucc(x)
+					drop u(.)
 					x
 				}
 				!x
@@ -93,13 +96,15 @@ let unsucc(x)
 		#[ This is way uglier than the old simplify thing, but it is
 		   much more practical, and more importantly, it works. ]
 		's' -> {
+			let s(x) succ(x)
 			let s(x) {
-				let s(x) succ(x)
+				drop s(.)
 				x
 			}
 			let u(x) {
+				let s(x) succ(x)
 				let s(x) {
-					let s(x) succ(x)
+					drop s(.)
 					x
 				}
 				!x
