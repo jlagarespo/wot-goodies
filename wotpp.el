@@ -36,10 +36,12 @@
 
 (flycheck-define-checker wotpp-validator
   "flycheck for wot++"
-  :command ("w++" "-Wall,no-func-redefined,no-var-redefined" "-s" (eval (file-name-directory buffer-file-name)) source)
+  :command ("w++" "-c" "-i" "-Wall,no-func-redefined,no-var-redefined" "-s" (eval (file-name-directory buffer-file-name)) source)
   :error-patterns
-  ((error line-start "[31merror[0m: " (file-name) ":" line ":" column " => [1m" (message) "[0m" line-end)
-   (warning line-start "[34mwarning[0m: " (file-name) ":" line ":" column " => [1m" (message) "[0m" line-end))
+  ((error line-start "(" (| "source" "normal") ") " (| "semantic" "lexical" "syntax" "encoding") " error: " (file-name) ":" line ":" column " => " (message) line-end)
+   (error line-start "(eval) " (| "semantic" "lexical" "syntax" "encoding") " error: " (file-name) ":" (one-or-more digit) ":" (one-or-more digit) " => " (message) line-end)
+   (warning line-start "(" (| "source" "normal") ") " (| "semantic" "lexical" "syntax" "encoding") " warning: " (file-name) ":" line ":" column " => " (message) line-end)
+   (warning line-start "(eval) " (| "semantic" "lexical" "syntax" "encoding") " warning: " (file-name) ":" (one-or-more digit) ":" (one-or-more digit) " => " (message) line-end))
   :modes wotpp-mode)
 
 (add-to-list 'flycheck-checkers 'wotpp-validator)
@@ -68,23 +70,23 @@
 (defconst wotpp-syntax-table
   (let ((table (make-syntax-table)))
 	;; expression prefixes
-	(modify-syntax-entry ?\ "'")
-	(modify-syntax-entry ?! "'")
+	(modify-syntax-entry ?\ "'" table)
+	(modify-syntax-entry ?! "'" table)
 
 	;; strings
-	(modify-syntax-entry ?\" "\"")
-	(modify-syntax-entry ?' "\"")
+	(modify-syntax-entry ?\" "\"" table)
+	(modify-syntax-entry ?' "\"" table)
 
 	;; parenthesis and blocks
-	(modify-syntax-entry ?\( "()")
-	(modify-syntax-entry ?\) ")(")
-	(modify-syntax-entry ?{ "(}")
-	(modify-syntax-entry ?} "){")
+	(modify-syntax-entry ?\( "()" table)
+	(modify-syntax-entry ?\) ")(" table)
+	(modify-syntax-entry ?{ "(}" table)
+	(modify-syntax-entry ?} "){" table)
 
 	;; comments
-	(modify-syntax-entry ?# ". 1b")
-	(modify-syntax-entry ?\[ ".]2b")
-	(modify-syntax-entry ?\] ">[b")
+	(modify-syntax-entry ?# ". 1b" table)
+	(modify-syntax-entry ?\[ ".]2b" table)
+	(modify-syntax-entry ?\] ">[b" table)
 
 	table))
 

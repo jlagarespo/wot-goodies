@@ -16,7 +16,7 @@
 
    And yes, as with most things wot++, most of the function names are just
    for the shits and gigs.
- 
+
    Written by: Jacob Lagares Pozo
    Original concept by strexicious (https://github.com/wotpp/wotpp/commit/c4d73fea5283eda339c03ab1bfe92511141dc44b#diff-92ec367d8e521a2027e36836d72e26da3116abf645afcbdfd8b5c906866e8595)
    This is like my third attempt at improving that number system.
@@ -25,12 +25,12 @@
 
 #[ Notes on style:
    - For single statement blocks (such as `y` in `let x y`), you should
-     add a newline between `x` and `y`, except if `y` is so short that a
-     newline looks stupid. I'll let you be the judge of that.
+	 add a newline between `x` and `y`, except if `y` is so short that a
+	 newline looks stupid. I'll let you be the judge of that.
    - Tabs for indentation, spaces for indentation beyond tabs (i.e.
-     to line up comments properly.)
+	 to line up comments properly.)
    - Single quotes `'` preferred over double quotes `"`, and vice-versa
-     for strings meant to be evaluated. Thus: `!'"hello, world"'` ]
+	 for strings meant to be evaluated. Thus: `!'"hello, world"'` ]
 
 #[ TODO:
    - Negation operation (potentially multiply by -1?).
@@ -123,14 +123,14 @@ let pred(x)
    it's beautiful and I want our descendants to witness it. ]
 let simp(x) {
 	#[ DISCLAMER: This is no longer needed due to the new way
-	              unsucc() works. ]
+				  unsucc() works. ]
 	error 'simp(x) has been deprecated in favour of the new unsucc system.'
 
 	#[ Simplify x to use the least amount of s() and u() possible.
 	   I'm still not sure how did I manage to come up with
 	   this but it is incredible, and it works like a charm.
 	   WARNING: This will truncate negative numbers to 0.
-	            Never simplify negative numbers! ]
+				Never simplify negative numbers! ]
 
 	let s(x)
 		succ(x)
@@ -276,4 +276,3 @@ log '10⁵ = ...'
 log nop(mult(mult(mult(mult(10, 10), 10), 10), 10)) .. done
 log '10⁶ should segfault.\n'
 ]
-
