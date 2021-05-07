@@ -1,0 +1,274 @@
+#[ numwot.wpp
+   The improved wot++ number system.
+
+   Please be aware that this file contains a lot of code that is way
+   less elegant than it could be. And at one point it was, but as happens
+   with all software, it very quickly succumbed to spaghettification. I
+   like to think it's quite efficient though, definitely more than it used
+   to be. One way or another, this file is not meant to be read lightly,
+   but I hope it can at least be used as a rudimentary way to count in
+   wot++.
+
+   I wanted to write this in a sort of "literate programming" style, but
+   I couldn't come up with a good way to do that in wot++ (mostly since
+   this is meant to be `use`d from other files so I can't just embed
+   output strings wherever I feel like it, at most I can add a few `log`s.).
+
+   And yes, as with most things wot++, most of the function names are just
+   for the shits and gigs.
+ 
+   Written by: Jacob Lagares Pozo
+   Original concept by strexicious (https://github.com/wotpp/wotpp/commit/c4d73fea5283eda339c03ab1bfe92511141dc44b#diff-92ec367d8e521a2027e36836d72e26da3116abf645afcbdfd8b5c906866e8595)
+   This is like my third attempt at improving that number system.
+   Created: 2021-05-06
+   Modified: 2021-05-07 ]
+
+#[ Notes on style:
+   - For single statement blocks (such as `y` in `let x y`), you should
+     add a newline between `x` and `y`, except if `y` is so short that a
+     newline looks stupid. I'll let you be the judge of that.
+   - Tabs for indentation, spaces for indentation beyond tabs (i.e.
+     to line up comments properly.)
+   - Single quotes `'` preferred over double quotes `"`, and vice-versa
+     for strings meant to be evaluated. Thus: `!'"hello, world"'` ]
+
+#[ TODO:
+   - Negation operation (potentially multiply by -1?).
+   - Make multiplication handle signs properly.
+   - Division, maybe integer fractions (this sounds really haunting.) ]
+
+
+#[ A few useful global variables, mainly to make code less verbose. ]
+
+let ~ ''
+let 0 'z'
+
+
+#[ General utilities. ]
+
+let return(x) {
+	#[ Drop s(), u() and z, so that when the parent scope regains
+	   control, it isn't left with unexpected s() and u().
+	   Used to return simped x, now it just returns x because of subtraction. ]
+	drop s(.)
+	drop u(.)
+	#[simp(x)]
+	x
+}
+
+
+
+#[ Functions for counting. Increase and decerase `x` by one. These used
+   to be very nice and elegant, but ever since I ditched the `simp`lification
+   system, all the logic for negative numbers must be handled withing
+   these functions themselves. Please don't be too harsh on them, just
+   treat them as black boxes you can use elsewhere. ]
+
+let succ(x)
+	#[ Find the successor to x. ]
+	match x[:1] {
+		#[ This is way uglier than the old simplify thing, but it is
+		   much more practical, and more importantly, it works. ]
+		'u' -> {
+			let u(x) {
+				let u(x) unsucc(x)
+				x
+			}
+			let s(x) {
+				let u(x) {
+					let u(x) unsucc(x)
+					x
+				}
+				!x
+			}
+			let z 0
+			return(!x)
+		}
+		* -> 's(' .. x .. ')'
+	}
+
+let unsucc(x)
+	#[ Find the predecessor to x. ]
+	match x[:1] {
+		#[ This is way uglier than the old simplify thing, but it is
+		   much more practical, and more importantly, it works. ]
+		's' -> {
+			let s(x) {
+				let s(x) succ(x)
+				x
+			}
+			let u(x) {
+				let s(x) {
+					let s(x) succ(x)
+					x
+				}
+				!x
+			}
+			let z 0
+			return(!x)
+		}
+		* -> 'u(' .. x .. ')'
+	}
+
+let pred(x)
+	#[ Still nice to have non-braindead names. ]
+	unsucc(x)
+
+#[ SIMP IS DEPRECATED!!! It will be kept here because, let's be honest,
+   it's beautiful and I want our descendants to witness it. ]
+let simp(x) {
+	#[ DISCLAMER: This is no longer needed due to the new way
+	              unsucc() works. ]
+	error 'simp(x) has been deprecated in favour of the new unsucc system.'
+
+	#[ Simplify x to use the least amount of s() and u() possible.
+	   I'm still not sure how did I manage to come up with
+	   this but it is incredible, and it works like a charm.
+	   WARNING: This will truncate negative numbers to 0.
+	            Never simplify negative numbers! ]
+
+	let s(x)
+		succ(x)
+	let u(x) {
+		let s(x) {
+			let s(x) succ(x)
+			x
+		}
+		!x
+	}
+	let z 0
+	!x
+}
+
+
+let h(x)
+	#[ Nice way to print "headers" for the different test sets. ]
+	'*** ' .. x .. '\n'
+
+#[ Simple counting tests. ]
+
+log h('Simple counting tests')
+log '3 = '..succ(succ(succ(succ(unsucc(0)))))..'\n'
+log '3 = '..succ(succ(succ(unsucc(succ(0)))))..'\n'
+log '3 = '..succ(succ(unsucc(succ(succ(0)))))..'\n'
+log '3 = '..succ(unsucc(succ(succ(succ(0)))))..'\n'
+log '3 = '..unsucc(succ(succ(succ(succ(0)))))..'\n'
+log '4 = '..succ(succ(succ(succ(0))))..'\n'
+log '2 = '..succ(succ(succ(unsucc(succ(unsucc(unsucc(succ(0))))))))..'\n'
+log '-1 = '..succ(unsucc(unsucc(succ(unsucc(0)))))..'\n'
+log '-2 = '..unsucc(succ(unsucc(unsucc(succ(unsucc(0))))))..'\n'
+log '-3 = '..succ(unsucc(unsucc(unsucc(unsucc(0)))))..'\n'
+log '-4 = '..unsucc(unsucc(unsucc(unsucc(0))))..'\n'
+log '-5 = '..unsucc(unsucc(unsucc(unsucc(unsucc(0)))))..'\n'
+
+
+
+
+#[ Basic arithmetic
+   In this next section, functions are defined to compute basic arithmetic
+   operations, and their respective tests. ]
+
+
+#[ Addition and subtraction. ]
+
+let add(x, z) {
+	#[ Computes x+z. ]
+	let s(x) succ(x)
+	let u(x) unsucc(x)
+	return(!x)
+}
+
+log h('Addition tests')
+
+let 1 succ(0)
+let 2 succ(1)
+let 3 succ(2)
+let 4 succ(3)
+let 5 succ(4)
+let 6 succ(5)
+let 7 succ(6)
+let 8 succ(7)
+let 9 succ(8)
+let 10 succ(9)
+
+let 3+6 add(3, 6)
+let 3u+6 add(succ(succ(succ(unsucc(succ(0))))), 6)
+
+#[assert 3+6 3u+6
+assert 3+6 9
+assert 3u+6 9]
+
+log '3 + 6 = '..3+6 ..'\n'
+log '    9 = '..3+6 ..'\n'
+log 'thus 3 + 6 = 9\n'
+log '2 + 3 = '..add(2, 3)..'\n'
+log '10 + 10 = '..add(10, 10)..'\n'
+
+log h('Subtraction tests')
+
+let -1 unsucc(0)
+let -2 unsucc(-1)
+let -3 unsucc(-2)
+let -4 unsucc(-3)
+let -5 unsucc(-4)
+let -6 unsucc(-5)
+let -7 unsucc(-6)
+let -8 unsucc(-7)
+let -9 unsucc(-8)
+let -10 unsucc(-9)
+
+log '2 - 5 = '..add(2, -5)'\n'
+log '   -3 = '..-3 ..'\n'
+log 'thus 2 - 5 = -3\n'
+
+
+#[ Multiplication. ]
+
+let mult(x, y) {
+	!{
+		#[ We need a better way to capture parameters inside an inner scope smh ]
+		'let s(x) {' ..
+			'add("' .. y .. '", x)' ..
+		'}' ..
+		'let u(x) {' ..
+			'add("' .. y .. '", x)' ..
+		'}'
+	}
+	let z 0
+	return(!x)
+}
+
+log h('Multiplication tests')
+
+log '3 * 2 = '..mult(3, 2)..'\n'
+log '2 * 3 = '..mult(2, 3)..'\n'
+log '5 * 3 = '..mult(5, 3)..'\n'
+log '1 * 5 = '..mult(1, 5)..'\n'
+log '0 * 7 = '..mult(0, 7)..'\n'
+
+log 'note: For some reason mult hasn\'t yet figured out sign multiplication...\n'
+log '3 * -1 = '..mult(3, -1)..'\n'
+log '-3 * 1 = '..mult(-3, 1)..'\n'
+log '-1 * 3 = '..mult(-1, 3)..'\n'
+log '1 * -3 = '..mult(1, -3)..'\n'
+log '5 * -5 = '..mult(5, -5)..'\n'
+log '-5 * -5 = '..mult(5, -5)..'\n'
+
+#[ #[ This has been disabled for obvious reasons. ]
+
+log h('Performance tests')
+
+let nop(x) ~
+let done ' done.\n'
+
+log '10 * 10 = ...'
+log nop(mult(10, 10)) .. done
+log '10³ = ...'
+log nop(mult(mult(10, 10), 10)) .. done
+log '10⁴ = ...'
+log nop(mult(mult(mult(10, 10), 10), 10)) .. done
+log '10⁵ = ...'
+log nop(mult(mult(mult(mult(10, 10), 10), 10), 10)) .. done
+log '10⁶ should segfault.\n'
+]
+
