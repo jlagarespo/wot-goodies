@@ -1,5 +1,5 @@
-#[ numwot.wpp
-   The improved wot++ number system.
+#[ numwot.wpp -- numwot core.
+   This file is part of the improved wot++ number system.
 
    Please be aware that this file contains a lot of code that is way
    less elegant than it could be. And at one point it was, but as happens
@@ -21,7 +21,11 @@
    Original concept by strexicious (https://github.com/wotpp/wotpp/commit/c4d73fea5283eda339c03ab1bfe92511141dc44b#diff-92ec367d8e521a2027e36836d72e26da3116abf645afcbdfd8b5c906866e8595)
    This is like my third attempt at improving that number system.
    Created: 2021-05-06
-   Modified: 2021-05-07 ]
+   Modified: 2021-05-09 ]
+
+#[ This Source Code Form is subject to the terms of the Mozilla Public
+   License, v. 2.0. If a copy of the MPL was not distributed with this
+   file, You can obtain one at https://mozilla.org/MPL/2.0/. ]
 
 #[ Notes on style:
    - For single statement blocks (such as `y` in `let x y`), you should
@@ -146,28 +150,6 @@ let simp(x) {
 }
 
 
-let h(x)
-	#[ Nice way to print "headers" for the different test sets. ]
-	'*** ' .. x .. '\n'
-
-#[ Simple counting tests. ]
-
-log h('Simple counting tests')
-log '3 = '..succ(succ(succ(succ(unsucc(0)))))..'\n'
-log '3 = '..succ(succ(succ(unsucc(succ(0)))))..'\n'
-log '3 = '..succ(succ(unsucc(succ(succ(0)))))..'\n'
-log '3 = '..succ(unsucc(succ(succ(succ(0)))))..'\n'
-log '3 = '..unsucc(succ(succ(succ(succ(0)))))..'\n'
-log '4 = '..succ(succ(succ(succ(0))))..'\n'
-log '2 = '..succ(succ(succ(unsucc(succ(unsucc(unsucc(succ(0))))))))..'\n'
-log '-1 = '..succ(unsucc(unsucc(succ(unsucc(0)))))..'\n'
-log '-2 = '..unsucc(succ(unsucc(unsucc(succ(unsucc(0))))))..'\n'
-log '-3 = '..succ(unsucc(unsucc(unsucc(unsucc(0)))))..'\n'
-log '-4 = '..unsucc(unsucc(unsucc(unsucc(0))))..'\n'
-log '-5 = '..unsucc(unsucc(unsucc(unsucc(unsucc(0)))))..'\n'
-
-
-
 
 #[ Basic arithmetic
    In this next section, functions are defined to compute basic arithmetic
@@ -183,49 +165,19 @@ let add(x, z) {
 	return(!x)
 }
 
-log h('Addition tests')
+let sub(x, y) {
+	#[ Computes x-y. ]
+	add(x, negate(y))
+}
 
-let 1 succ(0)
-let 2 succ(1)
-let 3 succ(2)
-let 4 succ(3)
-let 5 succ(4)
-let 6 succ(5)
-let 7 succ(6)
-let 8 succ(7)
-let 9 succ(8)
-let 10 succ(9)
-
-let 3+6 add(3, 6)
-let 3u+6 add(succ(succ(succ(unsucc(succ(0))))), 6)
-
-#[assert 3+6 3u+6
-assert 3+6 9
-assert 3u+6 9]
-
-log '3 + 6 = '..3+6 ..'\n'
-log '    9 = '..3+6 ..'\n'
-log 'thus 3 + 6 = 9\n'
-log '2 + 3 = '..add(2, 3)..'\n'
-log '10 + 10 = '..add(10, 10)..'\n'
-
-log h('Subtraction tests')
-
-let -1 unsucc(0)
-let -2 unsucc(-1)
-let -3 unsucc(-2)
-let -4 unsucc(-3)
-let -5 unsucc(-4)
-let -6 unsucc(-5)
-let -7 unsucc(-6)
-let -8 unsucc(-7)
-let -9 unsucc(-8)
-let -10 unsucc(-9)
-
-log '2 - 5 = '..add(2, -5)'\n'
-log '   -3 = '..-3 ..'\n'
-log 'thus 2 - 5 = -3\n'
-
+let negate(x) {
+	#[ Computes 0-x. ]
+	let s(x)
+		unsucc(x)
+	let u(x)
+		succ(x)
+	return(!x)
+}
 
 #[ Multiplication. ]
 
@@ -243,36 +195,14 @@ let mult(x, y) {
 	return(!x)
 }
 
-log h('Multiplication tests')
 
-log '3 * 2 = '..mult(3, 2)..'\n'
-log '2 * 3 = '..mult(2, 3)..'\n'
-log '5 * 3 = '..mult(5, 3)..'\n'
-log '1 * 5 = '..mult(1, 5)..'\n'
-log '0 * 7 = '..mult(0, 7)..'\n'
 
-log 'note: For some reason mult hasn\'t yet figured out sign multiplication...\n'
-log '3 * -1 = '..mult(3, -1)..'\n'
-log '-3 * 1 = '..mult(-3, 1)..'\n'
-log '-1 * 3 = '..mult(-1, 3)..'\n'
-log '1 * -3 = '..mult(1, -3)..'\n'
-log '5 * -5 = '..mult(5, -5)..'\n'
-log '-5 * -5 = '..mult(5, -5)..'\n'
+#[ Shorthands and aliases, for ease of use. ]
 
-#[ #[ This has been disabled for obvious reasons. ]
-
-log h('Performance tests')
-
-let nop(x) ~
-let done ' done.\n'
-
-log '10 * 10 = ...'
-log nop(mult(10, 10)) .. done
-log '10³ = ...'
-log nop(mult(mult(10, 10), 10)) .. done
-log '10⁴ = ...'
-log nop(mult(mult(mult(10, 10), 10), 10)) .. done
-log '10⁵ = ...'
-log nop(mult(mult(mult(mult(10, 10), 10), 10), 10)) .. done
-log '10⁶ should segfault.\n'
-]
+let +(x, y) add(x, y)
+let -(x, y) sub(x, y)
+let neg(x) negate(x)
+let -(x) negate(x)
+let multiply(x, y) mult(x, y)
+let mul(x, y) mult(x, y)
+#[let *(x, y) mult(x, y) =( ]

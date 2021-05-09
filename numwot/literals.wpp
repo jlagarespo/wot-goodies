@@ -1,0 +1,37 @@
+#[ literals.wpp -- integer literals for numwot.
+   This file is part of the improved wot++ number system.
+
+   Written by: Jacob Lagares Pozo
+   Created: 2021-05-09
+   Modified: 2021-05-09 ]
+
+#[ This Source Code Form is subject to the terms of the Mozilla Public
+   License, v. 2.0. If a copy of the MPL was not distributed with this
+   file, You can obtain one at https://mozilla.org/MPL/2.0/. ]
+
+use 'num.wpp'
+
+#[ TODO: Make a literal system that doesn't suck.
+   Perhaps, some sort of int to str system for let id eval? ]
+
+let 1 succ(0)
+let 2 succ(1)
+let 3 succ(2)
+let 4 succ(3)
+let 5 succ(4)
+let 6 succ(5)
+let 7 succ(6)
+let 8 succ(7)
+let 9 succ(8)
+let 10 succ(9)
+
+let -1 unsucc(0)
+let -2 unsucc(-1)
+let -3 unsucc(-2)
+let -4 unsucc(-3)
+let -5 unsucc(-4)
+let -6 unsucc(-5)
+let -7 unsucc(-6)
+let -8 unsucc(-7)
+let -9 unsucc(-8)
+let -10 unsucc(-9)
