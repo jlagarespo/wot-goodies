@@ -3,7 +3,7 @@
 
    Written by: Jacob Lagares Pozo
    Created: 2021-05-09
-   Modified: 2021-05-09 ]
+   Modified: 2021-05-10 ]
 
 #[ This Source Code Form is subject to the terms of the Mozilla Public
    License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -35,3 +35,7 @@ let -7 unsucc(-6)
 let -8 unsucc(-7)
 let -9 unsucc(-8)
 let -10 unsucc(-9)
+
+let false 0
+let true 1
+
