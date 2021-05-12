@@ -44,7 +44,8 @@ h('Simple counting tests')
 
 
 
-h('+ition tests')
+
+h('Addition tests')
 
 let 3+6 +(3, 6)
 let 3u+6 +(succ(succ(succ(unsucc(succ(0))))), 6)
@@ -107,16 +108,37 @@ nop(mul(mul(mul(mul(10, 10), 10), 10), 10)) .. done
 
 
 h('Conditionals')
-'3 > 5 = '..bool_to_str(greater(3, 5))..'\n'
-'7 > 5 = '..bool_to_str(greater(7, 5))..'\n'
-'5 > 5 = '..bool_to_str(greater(5, 5))..'\n'
-'2 > 3 = '..bool_to_str(greater(2, 3))..'\n'
-'-1 > 7 = '..bool_to_str(greater(-1, 7))..'\n'
-'7 > -1 = '..bool_to_str(greater(7, -1))..'\n'
-'-3 > -3 = '..bool_to_str(greater(-3, -3))..'\n'
-'-4 > -6 = '..bool_to_str(greater(-4, -6))..'\n'
-'0 > 0 = '..bool_to_str(greater(0, 1))..'\n'
-'1 > 0 = '..bool_to_str(greater(1, 0))..'\n'
-'0 > 1 = '..bool_to_str(greater(0, 1))..'\n'
-'1 > 1 = '..bool_to_str(greater(1, 1))..'\n'
+
+let perform_test_ops(s) {
+	'Conditionals: ' .. s .. '\n'..
+	'3 ' .. s .. ' 5 = '..bool_to_str(op(3, 5))..'\n'..
+	'7 ' .. s .. ' 5 = '..bool_to_str(op(7, 5))..'\n'..
+	'5 ' .. s .. ' 5 = '..bool_to_str(op(5, 5))..'\n'..
+	'2 ' .. s .. ' 3 = '..bool_to_str(op(2, 3))..'\n'..
+	'-1 ' .. s .. ' 7 = '..bool_to_str(op(-1, 7))..'\n'..
+	'7 ' .. s .. ' -1 = '..bool_to_str(op(7, -1))..'\n'..
+	'-3 ' .. s .. ' -3 = '..bool_to_str(op(-3, -3))..'\n'..
+	'-4 ' .. s .. ' -6 = '..bool_to_str(op(-4, -6))..'\n'..
+	'0 ' .. s .. ' 0 = '..bool_to_str(op(0, 1))..'\n'..
+	'1 ' .. s .. ' 0 = '..bool_to_str(op(1, 0))..'\n'..
+	'0 ' .. s .. ' 1 = '..bool_to_str(op(0, 1))..'\n'..
+	'1 ' .. s .. ' 1 = '..bool_to_str(op(1, 1))..'\n'
+}
+
+let op(x, y) >(x, y)
+perform_test_ops('>')
+let op(x, y) <(x, y)
+perform_test_ops('<')
+let op(x, y) >=(x, y)
+perform_test_ops('>=')
+let op(x, y) <=(x, y)
+perform_test_ops('<=')
+
+
+h('Loops')
+
+let foo(i)
+	'loop i = ' .. i .. '\n'
+
+for_i(\foo, 10)
 

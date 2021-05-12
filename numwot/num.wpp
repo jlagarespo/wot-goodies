@@ -198,7 +198,13 @@ let mult(x, y) {
 
 
 
-#[ Conditionals ]
+#[ Conditionals & boolean operations ]
+
+let not(x)
+	match x {
+		true -> false
+		false -> true
+	}
 
 let greater(x, y) {
 	let s(x) true
@@ -207,6 +213,32 @@ let greater(x, y) {
 	let z false
 	return(!d)
 }
+
+let lesser(x, y) {
+	let s(x) false
+	let u(x) true
+	let d sub(x, y)
+	let z false
+	return(!d)
+}
+
+let greater_or_equal(x, y)
+	not(lesser(x, y))
+
+let lesser_or_equal(x, y)
+	not(greater(x, y))
+
+
+#[ Loops ]
+
+let for_i(str, n)
+	match n {
+		0 -> ~
+		* -> {
+			for_i(str, unsucc(n)) ..
+			!{ str .. '(unsucc(n))' }
+		}
+	}
 
 
 
@@ -219,3 +251,15 @@ let -(x) negate(x)
 let multiply(x, y) mult(x, y)
 let mul(x, y) mult(x, y)
 #[let *(x, y) mult(x, y) =( ]
+let >(x, y) greater(x, y)
+let <(x, y) lesser(x, y)
+let >=(x, y) greater_or_equal(x, y)
+let <=(x, y) lesser_or_equal(x, y)
+let repeat(str, n) for_i(str, n)
+
+
+#[ Ready z. ]
+let s(.) 0
+let u(.) 0
+return(~)
+
