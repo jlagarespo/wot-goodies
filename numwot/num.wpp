@@ -119,10 +119,6 @@ let unsucc(x)
 		* -> 'u(' .. x .. ')'
 	}
 
-let pred(x)
-	#[ Still nice to have non-braindead names. ]
-	unsucc(x)
-
 #[ SIMP IS DEPRECATED!!! It will be kept here because, let's be honest,
    it's beautiful and I want our descendants to witness it. ]
 let simp(x) {
@@ -206,3 +202,4 @@ let -(x) negate(x)
 let multiply(x, y) mult(x, y)
 let mul(x, y) mult(x, y)
 #[let *(x, y) mult(x, y) =( ]
+let pred(x) unsucc(x)

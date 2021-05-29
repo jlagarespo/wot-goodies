@@ -38,10 +38,8 @@
   "flycheck for wot++"
   :command ("w++" "-c" "-i" "-Wall,no-func-redefined,no-var-redefined" "-s" (eval (file-name-directory buffer-file-name)) source)
   :error-patterns
-  ((error line-start "(" (| "source" "normal") ") " (| "semantic" "lexical" "syntax" "encoding") " error: " (file-name) ":" line ":" column " => " (message) line-end)
-   (error line-start "(eval) " (| "semantic" "lexical" "syntax" "encoding") " error: " (file-name) ":" (one-or-more digit) ":" (one-or-more digit) " => " (message) line-end)
-   (warning line-start "(" (| "source" "normal") ") " (| "semantic" "lexical" "syntax" "encoding") " warning: " (file-name) ":" line ":" column " => " (message) line-end)
-   (warning line-start "(eval) " (| "semantic" "lexical" "syntax" "encoding") " warning: " (file-name) ":" (one-or-more digit) ":" (one-or-more digit) " => " (message) line-end))
+  ((error line-start "[!] (" (| "repl" "source" "eval" "normal") ") " (| "semantic" "lexical" "syntax" "encoding") " error: " (file-name) ":" line ":" column " => " (message) line-end)
+   (warning line-start "[*] (" (| "repl" "source" "eval" "normal") ") " (| "semantic" "lexical" "syntax" "encoding") "warning: " (file-name) ":" line ":" column " => " (message) line-end))
   :modes wotpp-mode)
 
 (add-to-list 'flycheck-checkers 'wotpp-validator)
