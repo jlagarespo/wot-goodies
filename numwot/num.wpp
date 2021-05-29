@@ -21,7 +21,7 @@
    Original concept by strexicious (https://github.com/wotpp/wotpp/commit/c4d73fea5283eda339c03ab1bfe92511141dc44b#diff-92ec367d8e521a2027e36836d72e26da3116abf645afcbdfd8b5c906866e8595)
    This is like my third attempt at improving that number system.
    Created: 2021-05-06
-   Modified: 2021-05-09 ]
+   Modified: 2021-05-10 ]
 
 #[ This Source Code Form is subject to the terms of the Mozilla Public
    License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -37,7 +37,6 @@
 	 for strings meant to be evaluated. Thus: `!'"hello, world"'` ]
 
 #[ TODO:
-   - Negation operation (potentially multiply by -1?).
    - Make multiplication handle signs properly.
    - Division, maybe integer fractions (this sounds really haunting.) ]
 
@@ -56,6 +55,7 @@ let return(x) {
 	   Used to return simped x, now it just returns x because of subtraction. ]
 	drop s(.)
 	drop u(.)
+	let z '{error "impl error: please define z.\nIf you don\'t know why you are getting this error, please file a bug report." ""}'
 
 	#[simp(x)]
 	x
@@ -145,6 +145,8 @@ let simp(x) {
 	!x
 }
 
+use 'literals.wpp'
+
 
 
 #[ Basic arithmetic
@@ -168,10 +170,9 @@ let sub(x, y) {
 
 let negate(x) {
 	#[ Computes 0-x. ]
-	let s(x)
-		unsucc(x)
-	let u(x)
-		succ(x)
+	let s(x) unsucc(x)
+	let u(x) succ(x)
+	let z 0
 	return(!x)
 }
 
@@ -193,8 +194,53 @@ let mult(x, y) {
 
 
 
+#[ Conditionals & boolean operations ]
+
+let not(x)
+	match x {
+		true -> false
+		false -> true
+	}
+
+let greater(x, y) {
+	let s(x) true
+	let u(x) false
+	let d sub(x, y)
+	let z false
+	return(!d)
+}
+
+let lesser(x, y) {
+	let s(x) false
+	let u(x) true
+	let d sub(x, y)
+	let z false
+	return(!d)
+}
+
+let greater_or_equal(x, y)
+	not(lesser(x, y))
+
+let lesser_or_equal(x, y)
+	not(greater(x, y))
+
+
+#[ Loops ]
+
+let for_i(str, n)
+	match n {
+		0 -> ~
+		* -> {
+			for_i(str, unsucc(n)) ..
+			!{ str .. '(unsucc(n))' }
+		}
+	}
+
+
+
 #[ Shorthands and aliases, for ease of use. ]
 
+let pred(x) unsucc(x)
 let +(x, y) add(x, y)
 let -(x, y) sub(x, y)
 let neg(x) negate(x)
@@ -202,4 +248,14 @@ let -(x) negate(x)
 let multiply(x, y) mult(x, y)
 let mul(x, y) mult(x, y)
 #[let *(x, y) mult(x, y) =( ]
-let pred(x) unsucc(x)
+let >(x, y) greater(x, y)
+let <(x, y) lesser(x, y)
+let >=(x, y) greater_or_equal(x, y)
+let <=(x, y) lesser_or_equal(x, y)
+let repeat(str, n) for_i(str, n)
+
+
+#[ Ready z. ]
+let s(.) 0
+let u(.) 0
+return(~)
