@@ -141,4 +141,3 @@ let foo(i)
 	'loop i = ' .. i .. '\n'
 
 for_i(\foo, 10)
-
